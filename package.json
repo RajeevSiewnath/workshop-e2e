@@ -1,0 +1,14 @@
+{
+  "name": "e2e-workshop",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"pnpm backend\" \"pnpm frontend\"",
+    "frontend": "pnpm --filter frontend dev",
+    "backend": "pnpm --filter backend dev",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "concurrently": "^9.0.0"
+  }
+}
