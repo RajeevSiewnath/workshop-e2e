@@ -8,6 +8,7 @@
     "test:e2e": "playwright test"
   },
   "devDependencies": {
+    "@faker-js/faker": "^10.4.0",
     "@playwright/test": "^1.55.0",
     "concurrently": "^9.0.0"
   }

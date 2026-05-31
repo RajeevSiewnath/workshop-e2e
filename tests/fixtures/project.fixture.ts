@@ -1,10 +1,11 @@
 import { test as base } from "@playwright/test";
+import { faker } from "@faker-js/faker";
 
 export const test = base.extend<{
   projectName: string;
 }>({
   projectName: async ({}, use) => {
-    await use(`project-${Date.now()}`);
+    await use(faker.company.name());
   },
 });
 
