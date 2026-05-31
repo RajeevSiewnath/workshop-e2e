@@ -14,3 +14,25 @@ test("homepage loads", async ({ page }) => {
   // ✅ Good example:
   // Checks what the user sees.
 });
+
+test("user creates project", async ({ page }) => {
+  await page.goto("/");
+
+  await page
+    .getByRole("button", {
+      name: "Create Project",
+    })
+    .click();
+
+  await expect(page.getByText("Workshop Project")).toBeVisible();
+
+  // ❌ Bad example:
+  // await page.locator("body > div:nth-child(2) button").click();
+
+  // ✅ Good example:
+  // await page
+  //   .getByRole("button", {
+  //     name: "Create Project",
+  //   })
+  //   .click();
+});
