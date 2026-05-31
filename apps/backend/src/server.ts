@@ -8,6 +8,10 @@ app.use(express.json());
 
 let projects: any[] = [];
 
+app.get("/", (_, res) => {
+  res.json("OK");
+});
+
 app.get("/projects", (_, res) => {
   res.json(projects);
 });
