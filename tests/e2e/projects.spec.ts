@@ -35,4 +35,12 @@ test("user creates project", async ({ page }) => {
   //     name: "Create Project",
   //   })
   //   .click();
+
+  // ❌ Bad example:
+  // Hardcoded waits create flaky tests.
+  //
+  // await page.waitForTimeout(2000);
+
+  // ✅ Good example:
+  // Wait for actual outcome.
 });

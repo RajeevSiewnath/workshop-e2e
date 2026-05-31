@@ -12,7 +12,9 @@ app.get("/projects", (_, res) => {
   res.json(projects);
 });
 
-app.post("/projects", (req, res) => {
+app.post("/projects", async (req, res) => {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
   const project = {
     id: Date.now(),
     name: req.body.name,
@@ -23,6 +25,4 @@ app.post("/projects", (req, res) => {
   res.json(project);
 });
 
-app.listen(3001, () => {
-  console.log("Backend running");
-});
+app.listen(3001);
