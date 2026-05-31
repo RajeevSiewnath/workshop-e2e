@@ -40,3 +40,19 @@ test("user creates project", async ({ page }) => {
   // ✅ Good example:
   // Wait for actual outcome.
 });
+
+test("project creation calls backend", async ({ page }) => {
+  await page.goto("/");
+
+  const responsePromise = page.waitForResponse(
+    "http://localhost:3001/projects",
+  );
+
+  await page.getByTestId("create-project").click();
+
+  const response = await responsePromise;
+
+  expect(response.ok()).toBeTruthy();
+
+  await expect(page.getByText("Workshop Project")).toBeVisible();
+});
