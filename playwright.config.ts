@@ -1,4 +1,4 @@
-import { defineConfig } from "@playwright/test";
+import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
   testDir: "./tests/e2e",
@@ -14,6 +14,27 @@ export default defineConfig({
       command: "pnpm --filter frontend dev",
       url: "http://localhost:3000",
       timeout: 60 * 1000,
+    },
+  ],
+  workers: 1,
+  projects: [
+    {
+      name: "chromium",
+      use: {
+        ...devices["Desktop Chrome"],
+      },
+    },
+    {
+      name: "firefox",
+      use: {
+        ...devices["Desktop Firefox"],
+      },
+    },
+    {
+      name: "webkit",
+      use: {
+        ...devices["Desktop Safari"],
+      },
     },
   ],
   use: {
