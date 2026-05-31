@@ -56,3 +56,19 @@ test("project creation calls backend", async ({ page }) => {
 
   await expect(page.getByText("Workshop Project")).toBeVisible();
 });
+
+test("project list starts empty", async ({ page }) => {
+  await page.goto("/");
+
+  const responsePromise = page.waitForResponse(
+    "http://localhost:3001/projects",
+  );
+
+  const response = await responsePromise;
+
+  expect(response.ok()).toBeTruthy();
+
+  // ❌ Surprise:
+  // Sometimes fails because previous test created data.
+  await expect(page.getByText("Workshop Project")).not.toBeVisible();
+});
