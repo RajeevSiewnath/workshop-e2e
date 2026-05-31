@@ -95,3 +95,31 @@ myTest("uses fixture", async ({ page, projectName }) => {
   // ✅ Good example:
   // Centralized fixture.
 });
+
+test("mocked projects", async ({ page }) => {
+  await page.route("**/projects", (route) =>
+    route.fulfill({
+      json: [
+        {
+          id: 1,
+          name: "Mock Project",
+        },
+      ],
+    }),
+  );
+
+  await page.goto("/");
+
+  await expect(page.getByText("Mock Project")).toBeVisible();
+
+  // ❌ Bad example:
+  // Mocking your critical
+  // business flow E2E tests.
+
+  // You are testing your mocks.
+
+  // ✅ Good example:
+  // Mocking rare edge cases
+  // that are difficult to
+  // reproduce otherwise.
+});
