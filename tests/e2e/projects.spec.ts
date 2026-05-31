@@ -1,5 +1,9 @@
 import { test, expect } from "@playwright/test";
 import { execSync } from "node:child_process";
+import {
+  test as myTest,
+  expect as myExpect,
+} from "../fixtures/project.fixture";
 
 test.beforeEach(async ({ page }) => {
   execSync("npx rimraf ./apps/backend/data.json");
@@ -76,4 +80,18 @@ test("project list starts empty", async ({ page }) => {
   // ❌ Surprise:
   // Sometimes fails because previous test created data.
   await expect(page.getByText("Workshop Project")).not.toBeVisible();
+});
+
+myTest("uses fixture", async ({ page, projectName }) => {
+  await page.goto("/");
+
+  console.log(projectName);
+
+  // ❌ Bad example:
+  // const projectName = `project-${Date.now()}`;
+
+  // Repeated in every test.
+
+  // ✅ Good example:
+  // Centralized fixture.
 });
