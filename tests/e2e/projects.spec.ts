@@ -1,4 +1,9 @@
 import { test, expect } from "@playwright/test";
+import { execSync } from "node:child_process";
+
+test.beforeEach(async ({ page }) => {
+  execSync("npx rimraf ./apps/backend/data.json");
+});
 
 test("homepage loads", async ({ page }) => {
   await page.goto("/");
