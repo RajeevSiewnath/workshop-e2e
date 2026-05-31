@@ -18,11 +18,7 @@ test("homepage loads", async ({ page }) => {
 test("user creates project", async ({ page }) => {
   await page.goto("/");
 
-  await page
-    .getByRole("button", {
-      name: "Create Project",
-    })
-    .click();
+  await page.getByTestId("create-project").click();
 
   await expect(page.getByText("Workshop Project")).toBeVisible();
 
