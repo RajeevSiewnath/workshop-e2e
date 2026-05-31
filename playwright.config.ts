@@ -40,5 +40,8 @@ export default defineConfig({
   use: {
     baseURL: "http://localhost:3000",
     headless: true,
+    trace: "on", // "on-first-retry",
+    video: "on", // "retain-on-failure",
+    screenshot: "on", // "only-on-failure",
   },
 });
